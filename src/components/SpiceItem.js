@@ -3,6 +3,19 @@ import StarRating from './StarRating'
 
 class SpiceItem extends React.Component {
 
+  state ={
+    favorited: false
+  }
+
+  handleClick = (e) => {
+
+    this.setState((previousState) => ({
+      favorited: !previousState.favorited
+    })
+    )
+  }
+  
+
 
   render() {
     const { image, title, description, notes, rating } = this.props.spice
@@ -11,9 +24,10 @@ class SpiceItem extends React.Component {
         <img src={image} alt={title} />
         <div className="details">
           <button className="favorite">
-            <span role="img" aria-label="heart">
+            <span role="img" aria-label="heart" onClick={this.handleClick}>
               {/* TODO: find a way to toggle this value when the button is clicked!  */}
-              {true ? "🤍" : "♡"}
+             {/* true will always be true */}
+              {this.state.favorited ? "🤍" : "♡"}
             </span>
           </button>
           <h2>{title}</h2>
